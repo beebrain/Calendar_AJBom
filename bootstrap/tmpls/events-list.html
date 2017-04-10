@@ -1,0 +1,29 @@
+<span id="cal-slide-tick" style="display: none"></span>
+<div id="cal-slide-content" class="cal-event-list">
+    <ul class="unstyled list-unstyled">
+        <% 
+        function addZero(i) {
+        if (i < 10) {
+        i = "0" + i;
+        }
+        return i;
+        }
+
+        _.each(events, function(event) { 
+        var d = new Date(parseInt(event.start));
+        var e = new Date(parseInt(event.end));
+        var hs = d.getUTCHours()+7;
+        var ms = addZero(d.getUTCMinutes());
+        var he = e.getUTCHours()+7;
+        var me = addZero(e.getUTCMinutes());
+
+
+        %>
+        <li>
+            <span class="pull-left event <%= event['class'] %>"></span>&nbsp;
+            <a href="" data-event-id="<%= event.id %>" data-event-class="<%= event['class'] %>" class="event-item">
+                <%= event.title %> (<%= hs+":"+ms+" to "+he+":"+me %>)</a>
+        </li>
+        <% }) %>
+    </ul>
+</div>
